@@ -10,4 +10,8 @@ export class UserService {
   getUsers():User[] {
   	return USERS;
   }
+
+  getUserData(id: number){
+  	return USERS.find( obj => obj.id === id)
+  }
 }
