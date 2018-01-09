@@ -1,12 +1,20 @@
-<div class="row">
-	<div class="col-sm-12">
-		<input type="text" (keyup)="onKeyup($event)" >
-		<button (click)="getUsers()">search</button>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<input type="text" (keyup)="onKeyup($event)" >
+			<button (click)="getUsers()">search</button>
+		</div>
+		<div *ngIf="searchResult">
+			<div class="col-sm-12 col-md-3" *ngFor="let user of searchResult.items" style="display: inline-block;">
+				<div class="card">
+					<img class="card-img-top" [src]="user.avatar_url" alt="profile-image">
+					<div class="card-body">
+					<h5 class="card-title">{{user.login}}</h5>
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<button class="btn btn-primary" (click)="getUserDetails(user)">View</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<ol *ngIf="searchResult">
-		<li *ngFor="let user of searchResult.items">
-			<span>{{user.login}}</span>
-			<img [src]="user.avatar_url" alt="profile-image">
-		</li>
-	</ol>
 </div>
