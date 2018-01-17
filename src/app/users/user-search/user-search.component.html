@@ -1,20 +1,6 @@
-<div class="container">
-	<div class="row">
-		<div class="col-sm-12">
-			<input type="text" (keyup)="onKeyup($event)" >
-			<button (click)="getUsers()">search</button>
-		</div>
-		<div *ngIf="searchResult">
-			<div class="col-sm-12 col-md-3" *ngFor="let user of searchResult" style="display: inline-block;">
-				<div class="card">
-					<img class="card-img-top" [src]="user.avatar_url" alt="profile-image">
-					<div class="card-body">
-					<h5 class="card-title">{{user.username}}</h5>
-					<p class="card-text">{{user.status}}.</p>
-					<button class="btn btn-primary" (click)="getUserDetails(user)">View</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="row">
+  <div class="col-sm-12 text-right">
+    <input type="text" (keyup)="onKeyup($event)">
+    <button (click)="getUsers()">search</button>
+  </div>
 </div>

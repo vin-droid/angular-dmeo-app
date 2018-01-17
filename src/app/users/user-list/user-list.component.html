@@ -1,17 +1,11 @@
-<app-user-search></app-user-search>
-<div class="container">
-	<div class="row">
-		<div *ngIf="users">
-			<div class="col-sm-12 col-md-2" *ngFor="let user of users" style="display: inline-block;">
-				<div class="card">
-					<img class="card-img-top" [src]="user.avatar_url" alt="profile-image">
-					<div class="card-body">
-					<h5 class="card-title">{{user.username}}</h5>
-					<p class="card-text">{{user.status | ellipsis:[20]}}.</p>
-					<button class="btn btn-primary" (click)="getUserDetails(user)">View</button>
-					</div>
-				</div>
+<div class="row" *ngIf="users">
+	<div class="col-sm-2 col-md-2 mg-t-b-10" *ngFor="let user of users">
+		<div class="card card-inverse">
+			<img class="card-img" [src]="user.avatar_url" alt="profile-image">
+			<div class="card-img-overlay" style="padding: 0.25rem">
+				<h5 class="card-title" style="font-size: 14px; color: black;">{{user.username | ellipsis:[8] }}</h5>
 			</div>
+			<button class="btn btn-outline-success btn-sm" (click)="getUserDetails(user)">View</button>
 		</div>
 	</div>
 </div>

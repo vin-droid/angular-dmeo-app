@@ -16,6 +16,10 @@ export class UserListComponent implements OnInit {
   		res =>{
   			this.users = res;
   		});
+  	this.userService.updatedData.subscribe(
+  	res =>{
+  		this.users = res;
+  	})
   }
 
 }

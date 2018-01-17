@@ -18,7 +18,7 @@ export class UserService {
   	return this.http.get(url, {headers: contentHeaders}).map(
   		res => {
 		    const data = res.json();
-		    this.updatedData.next(res);
+		    this.updatedData.next(data);
 		    return data;
 		  });
   }
@@ -30,5 +30,10 @@ export class UserService {
 				const data = res.json();
 				return data;
 			});
+	}
+
+	createUser(user){
+		const url = this.baseApi
+		 return this.http.post(url,user);
 	}
 }

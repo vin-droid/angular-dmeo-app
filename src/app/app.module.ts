@@ -14,6 +14,10 @@ import { RouterModule } from '@angular/router';
 import { Ellipsis } from './ellipsis';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserNewComponent } from './users/user-new/user-new.component';
+import { LayoutComponent } from './layout/layout.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { UserComponent } from './users/user/user.component';
 
 
 
@@ -26,7 +30,11 @@ import { UserNewComponent } from './users/user-new/user-new.component';
     UserSearchComponent,
     Ellipsis,
     DashboardComponent,
-    UserNewComponent
+    UserNewComponent,
+    LayoutComponent,
+    HeaderComponent,
+    FooterComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule, HttpModule,FormsModule,
