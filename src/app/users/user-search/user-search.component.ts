@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GithubService } from './../../github.service';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service'
 
 @Component({
   selector: 'app-user-search',
@@ -12,22 +13,22 @@ export class UserSearchComponent implements OnInit {
   public searchText ;
   public searchResult;
   public searchCount;
-  constructor(private githubService: GithubService, private router: Router ) { }
+  constructor(private userService: UserService, private router: Router ) { }
 
   ngOnInit() {
   }
 
   getUsers(){
-  	this.githubService.getUsers(this.searchText).subscribe(
+  	this.userService.getUsers(this.searchText).subscribe(
       res => {
         this.searchResult = res;
-        this.searchCount = res.total_count;
+        this.searchCount = res.length;
       }
     );
   }
 
   getUserDetails(user){
-    this.router.navigate(['user', user.login])
+    this.router.navigate(['user', user.id])
   }
 
   onKeyup(event){

@@ -12,12 +12,10 @@ export class GithubService {
 
 	getUsers(searchText: string): Observable<any>{
 		const url = this.baseApi + searchText;
-		console.log(url);
 
 		return this.http.get(url).map(
 		  res => {
 		    const data = res.json();
-		    console.log(data);
 		    return data;
 		  }
 		)
@@ -27,7 +25,6 @@ export class GithubService {
 		return this.http.get(url).map(
 			res =>{
 				const data = res.json();
-				console.log(data);
 				return data; 
 			});
 	}

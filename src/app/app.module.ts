@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule }   from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { UserService } from './users/user.service';
 import { GithubService } from './github.service';
@@ -10,6 +11,9 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserSearchComponent } from './users/user-search/user-search.component';
 import { appRoutes } from './app.routes';
 import { RouterModule } from '@angular/router';
+import { Ellipsis } from './ellipsis';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserNewComponent } from './users/user-new/user-new.component';
 
 
 
@@ -19,11 +23,14 @@ import { RouterModule } from '@angular/router';
     UserListComponent,
     UserShowComponent,
     UserEditComponent,
-    UserSearchComponent
+    UserSearchComponent,
+    Ellipsis,
+    DashboardComponent,
+    UserNewComponent
   ],
   imports: [
-    BrowserModule, HttpModule,
-        RouterModule.forRoot(
+    BrowserModule, HttpModule,FormsModule,
+    RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )

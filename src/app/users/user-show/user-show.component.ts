@@ -9,7 +9,7 @@ import { GithubService } from './../../github.service';
   selector: 'app-user-show',
   templateUrl: './user-show.component.html',
   styleUrls: ['./user-show.component.css'],
-  providers: [GithubService]
+  providers: [GithubService, UserService]
 })
 export class UserShowComponent implements OnInit {
 	public user;
@@ -18,11 +18,10 @@ export class UserShowComponent implements OnInit {
 
   ngOnInit() {
   	const userId = this.activatedRoute.snapshot.params['userId']
-  	console.log(userId);
-  	this.githubService.getUserDetails(userId).subscribe(
-  		res => {
-  			this.user = res;
-  		})
+    this.userService.getUserDetails(userId).subscribe(
+      res => {
+        this.user = res;
+      });
   }
 
 
