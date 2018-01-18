@@ -24,7 +24,7 @@ export class UserService {
   }
 
 	getUserDetails(userId): Observable<any>{
-		const url = this.baseApi + userId;
+		const url = this.baseApi + "/" + userId;
 		return this.http.get(url).map(
 			res =>{
 				const data = res.json();

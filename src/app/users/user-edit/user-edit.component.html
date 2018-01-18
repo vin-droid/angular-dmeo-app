@@ -1,3 +1,43 @@
-<p>
-  user-edit works!
-</p>
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Edit User</h1>
+    <form (ngSubmit)="submitted = true;createUser(user);userForm.reset();" #userForm="ngForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" required [(ngModel)]='user.username' name="user[username]" #username="ngModel">
+        <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+          Username is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="status">Status</label>
+        <input type="text" class="form-control" id="status" required [(ngModel)]="user.status" name="user[status]" #status="ngModel">
+        <div [hidden]="status.valid || status.pristine" class="alert alert-danger">
+          Status is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="text" class="form-control" id="age" required [(ngModel)]="user.age" name="user[age]" #age="ngModel">
+        <div [hidden]="age.valid || age.pristine" class="alert alert-danger">
+          Age is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <select class="form-control" id="city" required [(ngModel)]="user.city" name="user[city]" #city="ngModel">
+          <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+        </select>
+        <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
+          City is required
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Submit</button>
+      <button type="button" class="btn btn-default" (click)="userForm.reset()">reset</button>
+    </form>
+
+    <div [hidden]="!submitted">
+    	{{formSubmitResponse}}
+    </div>
+  </div>
+</div>

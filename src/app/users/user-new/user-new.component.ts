@@ -37,7 +37,7 @@ export class UserNewComponent implements OnInit {
 	  	for(let key in error_body){
 				log.push(error_body[key]);
 			};
-  		this.formSubmitResponse = log;
+  		this.formSubmitResponse = log.toString();
   	});
   }
 
