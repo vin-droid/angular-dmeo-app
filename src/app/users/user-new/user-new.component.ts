@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
-import { UserService } from '../user.service'
+import { UserService } from '../user.service';
+import { CITIES } from '../../cities-mock';
 
 @Component({
   selector: 'app-user-new',
@@ -8,16 +9,12 @@ import { UserService } from '../user.service'
   styleUrls: ['./user-new.component.css']
 })
 export class UserNewComponent implements OnInit {
-  user = new User();
-  submitted: boolean = false;
-  routeId: any;
-  successUrl: string;
-  errorUrl: string;
-  formSubmitResponse: string;
+  public user = new User();
+  public submitted: boolean = false;
+  public formSubmitResponse: string;
+  public cities = CITIES;
 
-  cities = [{id: 1, name: "kanpur"},{id: 2, name: "delhi"},{id: 3, name: "Nagpur"},
-  {id: 4, name: "Allahabad"},{id: 5, name: "fatehpur"},{id: 6, name: "Gurgoan"},
-  {id: 7, name: "Nainital"},{id: 8, name: "Mirzapur"},{id: 9, name: "pune"}]
+  
 
   constructor(private userService: UserService) { }
 

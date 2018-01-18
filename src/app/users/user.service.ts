@@ -36,4 +36,8 @@ export class UserService {
 		const url = this.baseApi
 		 return this.http.post(url,user);
 	}
+
+	updateUser(user){
+		return this.http.put(this.baseApi, user)
+	}
 }
