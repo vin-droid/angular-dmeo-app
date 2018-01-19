@@ -30,11 +30,13 @@ export class UserEditComponent implements OnInit {
   }
 
   updateUser(user){
-   this.submitted = true;
+    this.submitted = true;
   	this.formSubmitResponse = "updating user..."
   	this.userService.updateUser(user).subscribe(
   	res =>{
-  		this.formSubmitResponse = "User was Successfully updates."
+  		this.formSubmitResponse = "User was Successfully updates.";
+  		debugger;
+  		this.user = res.json();
   	},
   	error =>{
 	  	let log = ["Error:"];
