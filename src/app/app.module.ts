@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { UserService } from './users/user.service';
 import { GithubService } from './github.service';
@@ -18,7 +18,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { UserComponent } from './users/user/user.component';
-
+import { AddressComponent } from './shared/address/address.component';
+import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
 
 @NgModule({
@@ -34,10 +35,11 @@ import { UserComponent } from './users/user/user.component';
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
-    UserComponent
+    UserComponent,
+    AddressComponent
   ],
   imports: [
-    BrowserModule, HttpModule,FormsModule,
+    BrowserModule, HttpModule,FormsModule, ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only

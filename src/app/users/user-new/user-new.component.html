@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-6">
     <h1>New User</h1>
-    <form (ngSubmit)="submitted = true;createUser(user);userForm.reset();" #userForm="ngForm">
+    <form [formGroup]="userForm" novalidate (ngSubmit)="submitted = true;createUser(user);userForm.reset();" #userForm="ngForm">
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" class="form-control" id="username" required [(ngModel)]='user.username' name="user[username]" #username="ngModel">
@@ -32,8 +32,25 @@
           City is required
         </div>
       </div>
+
+      <div formArrayName="addresses">
+        <div *ngFor="let address of userForm.controls.addresses.controls; let i=index">
+            <!-- address header, show remove button when more than one address available -->
+            <div>
+                <span>Address {{i + 1}}</span>
+                <span *ngIf="userForm.controls.addresses.controls.length > 1" (click)="removeAddress(i)">
+                </span>
+            </div>
+
+            <!-- Angular assigns array index as group name by default 0, 1, 2, ... -->
+            <div [formGroupName]="i">
+                <!--replace address implementation with our new address component-->
+                <address [group]="userForm.controls.addresses.controls[i]"></address>
+            </div>
+        </div>
+      </div>
       <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Submit</button>
-      <button type="button" class="btn btn-default" (click)="userForm.reset()">reset</button>
+      <button type="button" class="btn btn-default" (click)="userForm.reset()">Reset</button>
     </form>
 
     <div [hidden]="!submitted">
