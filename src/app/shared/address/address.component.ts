@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./address.component.css']
 })
 export class AddressComponent implements OnInit {
-	@Input('group')
-  public adressForm: FormGroup;
+	@Input() addressForm: FormGroup;
+
   constructor() { }
 
   ngOnInit() {

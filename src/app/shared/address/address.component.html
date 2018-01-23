@@ -1,10 +1,38 @@
-<div [formGroup]="adressForm">
+<div [formGroup]="addressForm">
     <div class="form-group col-xs-6">
         <label>Address Line 1</label>
         <input type="text" class="form-control" formControlName="address_line_1">
-        <small [hidden]="adressForm.controls.address_line_1.valid" class="text-danger">
-            first line address is required
-        </small>
+        <div [hidden]="addressForm.controls.address_line_1.valid && !addressForm.controls.address_line_1.touched" class="alert alert-danger">
+            Address Line 1 is required
+        </div>
+    </div>   
+    <div class="form-group col-xs-6">
+        <label>Address Line 2</label>
+        <input type="text" class="form-control" formControlName="address_line_1">
+        <div [hidden]="addressForm.controls.address_line_2.valid" class="alert alert-danger">
+            Address Line 2 is required
+        </div>
+    </div>    
+    <div class="form-group col-xs-6">
+        <label>City</label>
+        <input type="text" class="form-control" formControlName="city">
+        <div [hidden]="addressForm.controls.city.valid" class="alert alert-danger">
+            City address is required
+        </div>
+    </div>    
+    <div class="form-group col-xs-6">
+        <label>State</label>
+        <input type="text" class="form-control" formControlName="state">
+        <div [hidden]="addressForm.controls.state.valid" class="alert alert-danger">
+            State is required
+        </div>
+    </div>    
+    <div class="form-group col-xs-6">
+        <label>Country</label>
+        <input type="text" class="form-control" formControlName="country">
+        <div [hidden]="addressForm.controls.country.valid" class="alert alert-danger">
+            Country is required
+        </div>
     </div>
     <div class="form-group col-xs-6">
         <label>pincode</label>

@@ -23,17 +23,24 @@ export class UserNewComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = this._fb.group({
-            name: ['', [Validators.required, Validators.minLength(5)]],
+            username: ['', [Validators.required, Validators.minLength(5)]],
+            status: ['', [Validators.required, Validators.minLength(5)]],
+            age: [''],
             addresses: this._fb.array([
-                this.initAddress(),
+                this.initAddress()
             ])
         });
+    debugger
   }
 
   initAddress() {
       // initialize our address
       return this._fb.group({
-          address_line_1: ['', Validators.required],
+          address_line_1: ['', [Validators.required]],
+          address_line_2: ['', Validators.required],
+          city: ['', Validators.required],
+          state: ['', Validators.required],
+          country: ['', Validators.required],
           pincode: ['']
       });
   }
@@ -50,10 +57,11 @@ export class UserNewComponent implements OnInit {
     control.removeAt(i);
   }
 
-  createUser(user){
+  createUser(formValue){
   	this.submitted = true;
+    this.user = new (formValue);
   	this.formSubmitResponse = "creating user..."
-  	this.userService.createUser(user).subscribe(
+  	this.userService.createUser(this.user).subscribe(
   	res =>{
   		this.formSubmitResponse = "User was Successfully created."
   	},

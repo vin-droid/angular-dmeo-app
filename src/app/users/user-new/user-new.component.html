@@ -1,55 +1,34 @@
 <div class="row">
   <div class="col-sm-6">
     <h1>New User</h1>
-    <form [formGroup]="userForm" novalidate (ngSubmit)="submitted = true;createUser(user);userForm.reset();" #userForm="ngForm">
+    <form [formGroup]="userForm" novalidate (ngSubmit)="submitted = true;createUser(userForm.value);userForm.reset();">
+    <div>form values: {{userForm.value | json}}</div>
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" required [(ngModel)]='user.username' name="user[username]" #username="ngModel">
-        <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+        <input type="text" class="form-control" id="username" formControlName='username' name="user[username]">
+        <div [hidden]="userForm.controls.username.valid && !userForm.controls.username.touched" class="alert alert-danger">
           Username is required
         </div>
       </div>
       <div class="form-group">
         <label for="status">Status</label>
-        <input type="text" class="form-control" id="status" required [(ngModel)]="user.status" name="user[status]" #status="ngModel">
-        <div [hidden]="status.valid || status.pristine" class="alert alert-danger">
+        <input type="text" class="form-control" id="status" formControlName="status" name="user[status]">
+        <div [hidden]="userForm.controls.status.valid && userForm.controls.status.untouched" class="alert alert-danger">
           Status is required
         </div>
       </div>
       <div class="form-group">
         <label for="age">Age</label>
-        <input type="text" class="form-control" id="age" required [(ngModel)]="user.age" name="user[age]" #age="ngModel">
-        <div [hidden]="age.valid || age.pristine" class="alert alert-danger">
+        <input type="text" class="form-control" id="age"  formControlName="age" name="user[age]">
+        <div [hidden]="userForm.controls.age.valid && userForm.controls.age.untouched" class="alert alert-danger">
           Age is required
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="city">City</label>
-        <select class="form-control" id="city" required [(ngModel)]="user.city" name="user[city]" #city="ngModel">
-          <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
-        </select>
-        <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
-          City is required
         </div>
       </div>
 
       <div formArrayName="addresses">
-        <div *ngFor="let address of userForm.controls.addresses.controls; let i=index">
-            <!-- address header, show remove button when more than one address available -->
-            <div>
-                <span>Address {{i + 1}}</span>
-                <span *ngIf="userForm.controls.addresses.controls.length > 1" (click)="removeAddress(i)">
-                </span>
-            </div>
-
-            <!-- Angular assigns array index as group name by default 0, 1, 2, ... -->
-            <div [formGroupName]="i">
-                <!--replace address implementation with our new address component-->
-                <address [group]="userForm.controls.addresses.controls[i]"></address>
-            </div>
-        </div>
+        <app-address *ngFor="let address of userForm.get('addresses').controls; let i=index" [addressForm]="address"></app-address>
       </div>
-      <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Submit</button>
+      <button type="submit" class="btn btn-success" [disabled]="userForm?.invalid">Submit</button>
       <button type="button" class="btn btn-default" (click)="userForm.reset()">Reset</button>
     </form>
 
